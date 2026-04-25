@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elise Triquet — Ingénieure Pédagogique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violet:     #7C3AED;
+      --violet-light: #A78BFA;
+      --violet-pale: #EDE9FE;
+      --violet-dark: #4C1D95;
+      --ink:        #1A0A2E;
+      --muted:      #6B7280;
+      --bg:         #FAFAF8;
+      --white:      #FFFFFF;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans:  'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(250,250,248,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(124,58,237,0.08);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--violet-dark);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--violet); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 80% 50%, rgba(167,139,250,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(124,58,237,0.09) 0%, transparent 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--violet);
+      background: var(--violet-pale);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--violet);
+    }
+
+    .hero-typing-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 300;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-typing-row .je-suis {
+      color: var(--muted);
+    }
+
+    #typed-text {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--violet);
+      border-right: 2px solid var(--violet);
+      padding-right: 3px;
+      animation: blink 0.9s step-end infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--violet);
+      color: #fff;
+      border: 2px solid var(--violet);
+    }
+
+    .btn-primary:hover {
+      background: var(--violet-dark);
+      border-color: var(--violet-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124,58,237,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--violet);
+      border: 2px solid var(--violet-light);
+    }
+
+    .btn-outline:hover {
+      background: var(--violet-pale);
+      transform: translateY(-2px);
+    }
+
+    .hero-deco {
+      position: absolute;
+      right: 4rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(124,58,237,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .hero-deco::before {
+      content: '';
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(124,58,237,0.1);
+    }
+
+    .hero-deco::after {
+      content: '';
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(167,139,250,0.3), rgba(124,58,237,0.05));
+    }
+
+    /* ── SECTIONS COMMUNES ── */
+    section { padding: 7rem 4rem; }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--violet);
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.7;
+      margin-bottom: 4rem;
+    }
+
+    /* ── À PROPOS ── */
+    #about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card {
+      background: var(--violet-pale);
+      border-radius: 24px;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .about-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--violet);
+      color: #fff;
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      line-height: 1.4;
+      box-shadow: 0 12px 32px rgba(124,58,237,0.35);
+    }
+
+    .about-badge strong {
+      display: block;
+      font-size: 1.6rem;
+      font-family: var(--serif);
+    }
+
+    .about-text h2 { margin-bottom: 1.5rem; }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+
+    .about-tag {
+      background: var(--violet-pale);
+      color: var(--violet-dark);
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1.5px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .about-tag:hover {
+      background: var(--violet);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(124,58,237,0.25);
+    }
+
+    /* ── PROJETS ── */
+    #projects { background: var(--bg); }
+
+    .projects-header { max-width: 1100px; margin: 0 auto; margin-bottom: 0; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(124,58,237,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(124,58,237,0.12);
+    }
+
+    .project-thumb {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-thumb.c1 { background: linear-gradient(135deg, #EDE9FE, #DDD6FE); }
+    .project-thumb.c2 { background: linear-gradient(135deg, #FCE7F3, #FBCFE8); }
+    .project-thumb.c3 { background: linear-gradient(135deg, #ECFDF5, #D1FAE5); }
+
+    .project-body { padding: 1.5rem; }
+
+    .project-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── COMPÉTENCES ── */
+    #skills { background: var(--white); }
+
+    .skills-header { max-width: 1100px; margin: 0 auto; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .skill-block {
+      padding: 2rem;
+      border: 1.5px solid rgba(124,58,237,0.12);
+      border-radius: 16px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .skill-block:hover {
+      border-color: var(--violet-light);
+      background: var(--violet-pale);
+    }
+
+    .skill-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-block h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .skill-list li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--violet-light);
+      flex-shrink: 0;
+    }
+
+    /* ── PORTFOLIO CARDS (4 encarts) ── */
+    .portfolio-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .portfolio-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(124,58,237,0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(124,58,237,0.13);
+    }
+
+    .portfolio-card-icon {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+    }
+
+    .portfolio-card-body {
+      padding: 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .portfolio-card-body h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--ink);
+    }
+
+    .portfolio-card-body p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .portfolio-card-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--violet);
+      letter-spacing: 0.02em;
+    }
+
+    .portfolio-card:hover .portfolio-card-link {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 700px) {
+      .portfolio-cards { grid-template-columns: 1fr; }
+    }
+
+    /* ── VIDÉOS ── */
+    #videos { background: var(--bg); }
+
+    .videos-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .video-category {}
+
+    .video-cat-title {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1.5px solid rgba(124,58,237,0.12);
+    }
+
+    .video-cat-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+      max-width: 680px;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .video-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .video-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(124,58,237,0.08);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(124,58,237,0.1);
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    .video-meta {
+      padding: 1.2rem;
+    }
+
+    .video-meta h4 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .video-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .video-tags span {
+      font-size: 0.72rem;
+      background: var(--violet-pale);
+      color: var(--violet-dark);
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+      font-weight: 500;
+    }
+
+    .video-meta p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 0.4rem;
+    }
+
+    .video-tools {
+      font-size: 0.78rem !important;
+      color: var(--violet) !important;
+      font-weight: 500;
+    }
+
+    .video-warning {
+      font-size: 0.78rem !important;
+      color: #B45309 !important;
+      background: #FEF3C7;
+      border-radius: 6px;
+      padding: 0.4rem 0.6rem !important;
+      margin-top: 0.5rem !important;
+    }
+
+    @media (max-width: 900px) {
+      .video-grid { grid-template-columns: 1fr 1fr; }
+      .video-grid-2 { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .video-grid { grid-template-columns: 1fr; }
+    }
+
+    .sg-genially-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* ratio 16:9 */
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(124,58,237,0.12);
+    }
+
+    .sg-genially-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ── HARD SKILLS TABS ── */
+    .hs-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hs-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hs-tab {
+      padding: 0.7rem 1.4rem;
+      border-radius: 100px;
+      border: 1.5px solid rgba(124,58,237,0.2);
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .hs-tab:hover { border-color: var(--violet); color: var(--violet); }
+    .hs-tab.active { background: var(--violet); border-color: var(--violet); color: #fff; box-shadow: 0 4px 16px rgba(124,58,237,0.3); }
+
+    .hs-panel { display: none; }
+    .hs-panel.active { display: block; animation: fadeUp 0.3s ease; }
+
+    .hs-tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+    .hs-tool-cat {
+      background: var(--white);
+      border: 1.5px solid rgba(124,58,237,0.08);
+      border-radius: 16px;
+      padding: 1.4rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .hs-tool-cat:hover { border-color: var(--violet-light); box-shadow: 0 4px 20px rgba(124,58,237,0.08); }
+
+    .hs-tool-cat-header {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1.5px solid var(--violet-pale);
+    }
+
+    .hs-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .hs-pills span { background: var(--violet-pale); color: var(--violet-dark); padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.8rem; font-weight: 500; }
+    .hs-pills-large span { font-size: 1rem; padding: 0.6rem 1.2rem; }
+
+    .hs-cog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+    .hs-cog-card {
+      background: var(--white);
+      border: 1.5px solid rgba(124,58,237,0.08);
+      border-radius: 16px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .hs-cog-card:hover { border-color: var(--violet-light); transform: translateY(-3px); }
+    .hs-cog-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .hs-cog-card h4 { font-family: var(--serif); font-size: 1.15rem; color: var(--ink); margin-bottom: 0.75rem; }
+    .hs-cog-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+    .hs-ia-wrapper { background: var(--white); border-radius: 20px; border: 1.5px solid rgba(124,58,237,0.08); padding: 2.5rem; display: flex; flex-direction: column; gap: 2rem; }
+    .hs-ia-intro { font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 680px; }
+
+    @media (max-width: 900px) { .hs-tools-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .hs-tools-grid { grid-template-columns: 1fr; } .hs-cog-grid { grid-template-columns: 1fr; } }
+
+    /* ── SERIOUS GAME ── */
+    .sg-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .sg-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .sg-tools, .sg-gdd {
+      background: var(--bg);
+      border: 1.5px solid rgba(124,58,237,0.1);
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+
+    .sg-tools h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .sg-tools ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .sg-tools li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .sg-tools li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--violet-light);
+    }
+
+    .sg-gdd {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      justify-content: space-between;
+    }
+
+    .sg-gdd p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .sg-gdd em {
+      font-style: italic;
+      color: var(--violet);
+      font-family: var(--serif);
+    }
+
+    .sg-gdd-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      align-self: flex-start;
+    }
+
+    @media (max-width: 700px) {
+      .sg-details { grid-template-columns: 1fr; }
+    }
+
+    /* ── SECTIONS EXTRA ── */
+    .extra-section { background: var(--bg); }
+    .extra-header { max-width: 1100px; margin: 0 auto; }
+
+    .genially-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      box-shadow: 0 8px 40px rgba(124,58,237,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* Soft skills */
+    .softskills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .softskill-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1.5px solid rgba(124,58,237,0.1);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .softskill-card:hover {
+      border-color: var(--violet-light);
+      box-shadow: 0 8px 32px rgba(124,58,237,0.08);
+    }
+
+    .softskill-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .softskill-card h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .softskill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .softskill-list li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .softskill-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--violet-light);
+    }
+
+    /* Articles */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .article-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: var(--bg);
+      border: 1.5px solid rgba(124,58,237,0.1);
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s;
+    }
+
+    .article-card:hover {
+      border-color: var(--violet);
+      background: var(--violet-pale);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(124,58,237,0.12);
+    }
+
+    .article-date {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--violet);
+    }
+
+    .article-card h3 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--ink);
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    .article-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--violet);
+      margin-top: auto;
+    }
+
+    @media (max-width: 900px) {
+      .softskills-grid { grid-template-columns: 1fr; }
+      .articles-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .articles-grid { grid-template-columns: 1fr; }
+    }
+
+    .gestion-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 700px) {
+      .gestion-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--ink);
+      color: #fff;
+      text-align: center;
+    }
+
+    #contact .section-label { color: var(--violet-light); }
+    #contact .section-title { color: #fff; }
+    #contact .section-title em { color: var(--violet-light); }
+    #contact .section-subtitle { color: rgba(255,255,255,0.55); margin: 0 auto 3rem; }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.8rem;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .contact-btn-light {
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .contact-btn-light:hover {
+      background: var(--violet-pale);
+      transform: translateY(-2px);
+    }
+
+    .contact-btn-ghost {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.25);
+    }
+
+    .contact-btn-ghost:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--bg);
+      border-top: 1px solid rgba(124,58,237,0.06);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 1.5rem; }
+      #hero { padding: 0 1.5rem; min-height: 100svh; }
+      .hero-deco { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-badge { bottom: -1rem; right: -0.5rem; }
+    }
+    /* ── CHATBOT ── */
+    #chatbot-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    #chatbot-toggle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--violet);
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #chatbot-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(124,58,237,0.5);
+    }
+
+    #chatbot-panel {
+      display: none;
+      flex-direction: column;
+      width: 360px;
+      max-height: 520px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 1px solid rgba(124,58,237,0.12);
+      animation: fadeUp 0.3s ease;
+    }
+
+    #chatbot-panel.open { display: flex; }
+
+    #chatbot-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: var(--violet);
+      color: #fff;
+    }
+
+    #chatbot-avatar {
+      font-size: 1.6rem;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    #chatbot-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    #chatbot-subtitle {
+      font-size: 0.7rem;
+      opacity: 0.75;
+    }
+
+    #chatbot-close {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      opacity: 0.8;
+      padding: 0.25rem;
+    }
+
+    #chatbot-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: var(--bg);
+    }
+
+    .bot-msg, .user-msg {
+      max-width: 85%;
+      padding: 0.75rem 1rem;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      line-height: 1.55;
+    }
+
+    .bot-msg {
+      background: var(--white);
+      border: 1px solid rgba(124,58,237,0.1);
+      align-self: flex-start;
+      color: var(--ink);
+    }
+
+    .user-msg {
+      background: var(--violet);
+      color: #fff;
+      align-self: flex-end;
+      border-radius: 14px 14px 4px 14px;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 4px;
+      padding: 0.75rem 1rem;
+      background: var(--white);
+      border: 1px solid rgba(124,58,237,0.1);
+      border-radius: 14px;
+      align-self: flex-start;
+      width: fit-content;
+    }
+
+    .typing-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--violet-light);
+      animation: typingBounce 1s infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-6px); }
+    }
+
+    #chatbot-input-row {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid rgba(124,58,237,0.08);
+      background: var(--white);
+    }
+
+    #chatbot-input {
+      flex: 1;
+      border: 1.5px solid rgba(124,58,237,0.2);
+      border-radius: 100px;
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+      font-family: var(--sans);
+      color: var(--ink);
+      outline: none;
+      background: var(--bg);
+    }
+
+    #chatbot-input:focus {
+      border-color: var(--violet);
+    }
+
+    #chatbot-send {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--violet);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    #chatbot-send:hover { background: var(--violet-dark); }
+
+    @media (max-width: 480px) {
+      #chatbot-panel { width: calc(100vw - 2rem); }
+      #chatbot-container { right: 1rem; bottom: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Elise Triquet</a>
+    <ul class="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#projects">Mes réalisations</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Portfolio</span>
+      <h1 class="hero-name">Bonjour, je suis<br><em>Elise Triquet.</em></h1>
+      <div class="hero-typing-row">
+        <span class="je-suis">Je suis</span>
+        <span id="typed-text"></span>
+      </div>
+      <p class="hero-desc">
+        Je conçois des expériences d'apprentissage engageantes et efficaces, 
+        à la croisée de la pédagogie, du design et du numérique.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+        <a href="#contact" class="btn btn-outline">Me contacter</a>
+      </div>
+    </div>
+    <div class="hero-deco"></div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-card">
+          <img src="Elise_pro.png" alt="Photo de profil d'Elise Triquet">
+        </div>
+        <div class="about-badge">
+          <strong>2</strong>
+          ans d'expérience
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <p class="section-label">À propos</p>
+        <h2 class="section-title">Apprendre,<br>c'est <em>se transformer.</em></h2>
+        <p>
+          Ingénieure pédagogique avec 2 ans d'expérience, je conçois des dispositifs 
+          d'apprentissage sur mesure : capsules vidéo, modules e-learning, serious games, 
+          parcours blended… toujours centrés sur l'apprenant.
+        </p>
+        <p>
+          Ma particularité : j'utilise les outils numériques et l'IA à la lumière des 
+          recommandations de la recherche en sciences cognitives — pour concevoir des 
+          contenus qui engagent vraiment et qui font apprendre durablement.
+        </p>
+        <div class="about-values">
+          <a href="#section-hardskills" class="about-tag">Hard skills</a>
+          <a href="#section-parcours" class="about-tag">Mon parcours</a>
+          <a href="#section-softskills" class="about-tag">Soft skills</a>
+          <a href="#section-gestion" class="about-tag">Gestion de projet</a>
+          <a href="#section-articles" class="about-tag">Articles publiés</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJETS -->
+  <section id="projects">
+    <div class="projects-header">
+      <p class="section-label">Projets</p>
+      <h2 class="section-title">Quelques <em>réalisations</em></h2>
+      <p class="section-subtitle">Des capsules pédagogiques conçues et développées dans des contextes variés — projets universitaires, expérimentations et diffusions professionnelles.</p>
+    </div>
+    <div class="portfolio-cards">
+
+      <a href="#videos" class="portfolio-card reveal">
+        <div class="portfolio-card-icon" style="background: linear-gradient(135deg, #EDE9FE, #C4B5FD);">🎬</div>
+        <div class="portfolio-card-body">
+          <h3>Vidéos pédagogiques</h3>
+          <p>Capsules sur l'IA, les sciences cognitives, l'accessibilité et plus encore — réalisées avec Canva, Camtasia, Adobe Premiere.</p>
+          <span class="portfolio-card-link">Voir les vidéos →</span>
+        </div>
+      </a>
+
+      <a href="https://youtu.be/DW2VWSPm9-g" target="_blank" class="portfolio-card reveal">
+        <div class="portfolio-card-icon" style="background: linear-gradient(135deg, #FCE7F3, #F9A8D4);">🎙️</div>
+        <div class="portfolio-card-body">
+          <h3>Podcast</h3>
+          <p>Un épisode réalisé dans le cadre de mon Master 2 — une exploration sonore des enjeux du digital learning.</p>
+          <span class="portfolio-card-link">Écouter →</span>
+        </div>
+      </a>
+
+      <a href="#section-seriousgame" class="portfolio-card reveal" id="card-sg">
+        <div class="portfolio-card-icon" style="background: linear-gradient(135deg, #ECFDF5, #6EE7B7);">🎮</div>
+        <div class="portfolio-card-body">
+          <h3>Serious Game</h3>
+          <p>Un "inscape game" conçu pour l'onboarding chez Didask — énigmes, mini-jeux et personnages IA pour découvrir la culture d'entreprise.</p>
+          <span class="portfolio-card-link">Découvrir le jeu →</span>
+        </div>
+      </a>
+
+      <a href="http://www.elisetriquet.fr/moodle" target="_blank" class="portfolio-card reveal">
+        <div class="portfolio-card-icon" style="background: linear-gradient(135deg, #FEF3C7, #FDE68A);">🎓</div>
+        <div class="portfolio-card-body">
+          <h3>Mon Moodle</h3>
+          <p>Un espace Moodle conçu et administré de A à Z — parcours, activités et évaluations pensés pour l'apprenant.</p>
+          <span class="portfolio-card-link">Accéder au Moodle →</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+  </section>
+
+  <!-- VIDÉOS -->
+  <section id="videos">
+    <div class="projects-header">
+      <p class="section-label">Vidéos</p>
+      <h2 class="section-title">Mes <em>capsules</em> pédagogiques</h2>
+      <p class="section-subtitle">
+        Chaque vidéo indique la durée ⏱️, le public cible 🧑‍🏫 et le contexte de création.
+        Les mentions ⚠️ reflètent mon regard critique sur mes propres productions.
+      </p>
+    </div>
+
+    <div class="videos-categories">
+
+      <!-- Catégorie IA -->
+      <div class="video-category reveal">
+        <h3 class="video-cat-title">🤖 IA & Outils numériques</h3>
+        <div class="video-grid">
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/MeDyzsoom_c" title="Intro IA" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>Intro IA</h4>
+              <div class="video-tags">
+                <span>⏱️ 5 min</span>
+                <span>🧑‍🏫 Enseignants & formateurs débutants</span>
+              </div>
+              <p>Capsule développée et diffusée dans le cadre du projet AMI-CMA SciCoNum.</p>
+              <p class="video-tools">🛠️ Canva Pro</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/VQz0vk4EvXo" title="Tutoriel LLM" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>Tutoriel LLM</h4>
+              <div class="video-tags">
+                <span>⏱️ 4 min 20</span>
+                <span>🧑‍🏫 Enseignants & formateurs débutants</span>
+              </div>
+              <p>Réalisé pour le projet de formation universitaire "La différenciation pour les élèves dyslexiques".</p>
+              <p class="video-tools">🛠️ Camtasia · Canva Pro</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/H-OMit8hOVE" title="Tutoriel Notion" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>Tutoriel Notion</h4>
+              <div class="video-tags">
+                <span>⏱️ 6 min</span>
+                <span>🧑‍🏫 Enseignants & formateurs grands débutants</span>
+              </div>
+              <p>Tutoriel développé dans le cadre de mon parcours universitaire.</p>
+              <p class="video-tools">🛠️ Camtasia · Adobe Premiere</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Catégorie Sciences cognitives -->
+      <div class="video-category reveal">
+        <h3 class="video-cat-title">🧠 Sciences cognitives</h3>
+        <div class="video-grid">
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/-b7P_WMsAfM" title="Growth mindset vs Fixed mindset" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>Growth mindset vs Fixed mindset</h4>
+              <div class="video-tags">
+                <span>⏱️ 2 min</span>
+                <span>🧑‍🏫 Enseignants & formateurs</span>
+              </div>
+              <p>Diaporama sonorisé réalisé dans le cadre universitaire.</p>
+              <p class="video-tools">🛠️ Keynote</p>
+              <p class="video-warning">⚠️ Le volume sonore est très bas — je travaillerais davantage le son aujourd'hui.</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/UGlif8RSVqI" title="Le rôle de l'erreur dans l'apprentissage" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>Le rôle de l'erreur dans l'apprentissage</h4>
+              <div class="video-tags">
+                <span>⏱️ 2 min 30</span>
+                <span>🧑‍🏫 Enseignants & formateurs</span>
+              </div>
+              <p>Capsule réalisée dans le cadre universitaire.</p>
+              <p class="video-tools">🛠️ Canva Pro</p>
+              <p class="video-warning">⚠️ J'ajouterais des éléments de segmentation et un récapitulatif final.</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/TLk9PUT6t6c" title="La méthode DROP" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>La méthode DROP</h4>
+              <div class="video-tags">
+                <span>⏱️ 4 min</span>
+                <span>🧑‍🏫 Enseignants & formateurs</span>
+              </div>
+              <p>Capsule développée et diffusée dans le cadre du projet AMI-CMA SciCoNum.</p>
+              <p class="video-tools">🛠️ Canva Pro · Adobe Premiere</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Catégorie Accessibilité -->
+      <div class="video-category reveal">
+        <h3 class="video-cat-title">♿ Accessibilité & inclusion</h3>
+        <div class="video-grid video-grid-2">
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/gXXZtu6aRhM" title="Accessibilité" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>Accessibilité numérique</h4>
+              <div class="video-tags">
+                <span>⏱️ 6 min</span>
+                <span>🧑‍🏫 Enseignants & formateurs</span>
+              </div>
+              <p>Capsule réalisée pour le projet "La différenciation pour les élèves dyslexiques".</p>
+              <p class="video-tools">🛠️ Canva Pro</p>
+              <p class="video-warning">⚠️ Je reformulerais à 4:49 la mention des "styles d'apprentissage" qui peut alimenter un neuromythe.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Catégorie Apprentissage de l'anglais -->
+      <div class="video-category reveal">
+        <h3 class="video-cat-title">🇬🇧 Apprentissage de l'anglais</h3>
+        <div class="video-grid video-grid-2">
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/QIcD2WG10Zc" title="La prononciation du h initial" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>La prononciation du h initial</h4>
+              <div class="video-tags">
+                <span>⏱️ 1 min 45</span>
+                <span>🧑‍🏫 Enfants & adolescents</span>
+              </div>
+              <p>Capsule développée et diffusée dans le cadre du projet AMI-CMA SciCoNum.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Catégorie Recherche -->
+      <div class="video-category reveal">
+        <h3 class="video-cat-title">🔬 Recherche — Mémoire de M1 MEEF</h3>
+        <p class="video-cat-desc">Ces deux capsules sont identiques en tous points, seul le genre de l'avatar diffère, afin d'analyser les comportements des apprenants selon le genre de l'agent virtuel.</p>
+        <div class="video-grid video-grid-2">
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/1dkOJKzvHKQ" title="Agent virtuel — version 1" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>Agent virtuel — Version A</h4>
+              <div class="video-tags">
+                <span>⏱️ 3 min 50</span>
+                <span>🧑‍🏫 Adultes (apprenants anglais)</span>
+              </div>
+              <p class="video-tools">🛠️ Dreamstudio AI · Vidnoz · Audacity · ElevenLabs · Canva Pro</p>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube.com/embed/ZB5dyT6EmhY" title="Agent virtuel — version 2" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-meta">
+              <h4>Agent virtuel — Version B</h4>
+              <div class="video-tags">
+                <span>⏱️ 3 min 50</span>
+                <span>🧑‍🏫 Adultes (apprenants anglais)</span>
+              </div>
+              <p class="video-tools">🛠️ Dreamstudio AI · Vidnoz · Audacity · ElevenLabs · Canva Pro</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SERIOUS GAME -->
+  <section id="section-seriousgame" class="extra-section" style="background: var(--white);">
+    <div class="extra-header reveal">
+      <p class="section-label">Serious Game</p>
+      <h2 class="section-title">Un <em>inscape game</em> pour l'onboarding</h2>
+      <p class="section-subtitle">Ce jeu sérieux a été réalisé pour faciliter l'onboarding dans l'entreprise Didask. Les joueurs doivent résoudre des énigmes et connaître les piliers de la culture d'entreprise pour pouvoir y "rentrer".</p>
+    </div>
+
+    <div class="sg-layout">
+      <div class="sg-genially-wrapper reveal">
+        <iframe src="https://view.genially.com/68038117e07d4f22c7a350ac"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+
+      <div class="sg-details reveal">
+        <div class="sg-tools">
+          <h3>🛠️ Outils utilisés</h3>
+          <ul>
+            <li><strong>Genially</strong> + extensions <strong>S'CAPE</strong> pour la conception des énigmes et mini-jeux</li>
+            <li><strong>ChatGPT</strong> pour la réalisation et déclinaison de tous les personnages</li>
+            <li><strong>ElevenLabs</strong> pour créer les voix des personnages</li>
+            <li><strong>BandLab</strong> pour appliquer différents effets aux voix</li>
+          </ul>
+        </div>
+
+        <div class="sg-gdd">
+          <p>Envie d'avoir toutes les réponses aux énigmes ?<br>
+          Vous les trouverez dans le <em>Game Design Document</em>, élaboré en amont du jeu.</p>
+          <a href="https://24ae11f9-0e23-48d0-af5d-234634a146a5.usrfiles.com/ugd/24ae11_2845ff3413e145879ce06c5277be9c5d.pdf"
+            target="_blank"
+            class="btn btn-primary sg-gdd-btn">
+            📄 Voir le Game Design Document
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARD SKILLS -->
+  <section id="section-hardskills" class="extra-section">
+    <div class="extra-header reveal">
+      <p class="section-label">Hard skills</p>
+      <h2 class="section-title">Mes compétences <em>techniques</em></h2>
+      <p class="section-subtitle">Cliquez sur une catégorie pour explorer les outils et concepts associés.</p>
+    </div>
+
+    <div class="hs-container reveal">
+
+      <!-- Tabs -->
+      <div class="hs-tabs" role="tablist">
+        <button class="hs-tab active" data-tab="outils" role="tab">🛠️ Outils numériques</button>
+        <button class="hs-tab" data-tab="cognitives" role="tab">🧠 Sciences cognitives</button>
+        <button class="hs-tab" data-tab="ia" role="tab">🤖 IA</button>
+      </div>
+
+      <!-- Panel : Outils numériques -->
+      <div class="hs-panel active" id="tab-outils">
+        <div class="hs-tools-grid">
+
+          <div class="hs-tool-cat">
+            <div class="hs-tool-cat-header">🎧 Audio</div>
+            <div class="hs-pills">
+              <span>Adobe Audition</span>
+              <span>Audacity</span>
+            </div>
+          </div>
+
+          <div class="hs-tool-cat">
+            <div class="hs-tool-cat-header">🎬 Vidéo</div>
+            <div class="hs-pills">
+              <span>Premiere Pro</span>
+              <span>Camtasia</span>
+              <span>Filmora</span>
+              <span>Canva</span>
+            </div>
+          </div>
+
+          <div class="hs-tool-cat">
+            <div class="hs-tool-cat-header">🎨 Illustrations</div>
+            <div class="hs-pills">
+              <span>Adobe Photoshop</span>
+              <span>Adobe Illustrator</span>
+              <span>Genially</span>
+              <span>Canva</span>
+            </div>
+          </div>
+
+          <div class="hs-tool-cat">
+            <div class="hs-tool-cat-header">🤝 Collaboration</div>
+            <div class="hs-pills">
+              <span>Slack</span>
+              <span>Notion</span>
+              <span>Google Workspace</span>
+            </div>
+          </div>
+
+          <div class="hs-tool-cat">
+            <div class="hs-tool-cat-header">⚙️ No-code</div>
+            <div class="hs-pills">
+              <span>EdApp</span>
+              <span>Wix</span>
+            </div>
+          </div>
+
+          <div class="hs-tool-cat">
+            <div class="hs-tool-cat-header">📚 LMS & outils-auteurs</div>
+            <div class="hs-pills">
+              <span>Moodle</span>
+              <span>Didask</span>
+              <span>Articulate Storyline</span>
+              <span>Articulate Rise</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Panel : Sciences cognitives -->
+      <div class="hs-panel" id="tab-cognitives">
+        <div class="hs-cog-grid">
+
+          <div class="hs-cog-card">
+            <div class="hs-cog-icon">👁️</div>
+            <h4>L'attention</h4>
+            <p>Préserver l'attention des apprenants en proposant des contenus <strong>concis et épurés</strong>, et guider leur regard grâce à la <strong>signalisation</strong> et la <strong>hiérarchisation visuelle</strong>.</p>
+          </div>
+
+          <div class="hs-cog-card">
+            <div class="hs-cog-icon">🔥</div>
+            <h4>L'engagement</h4>
+            <p>Proposer des <strong>mises en situation pertinentes</strong> dans lesquelles les apprenants se projettent facilement, et créer des <strong>exercices courts et variés</strong> tout au long de la formation.</p>
+          </div>
+
+          <div class="hs-cog-card">
+            <div class="hs-cog-icon">💡</div>
+            <h4>Le retour sur erreur</h4>
+            <p>Formuler un feedback <strong>immédiat, précis</strong> et qui met sur la piste de la bonne solution. Valoriser les erreurs comme de véritables <strong>leviers d'apprentissage</strong>.</p>
+          </div>
+
+          <div class="hs-cog-card">
+            <div class="hs-cog-icon">🔁</div>
+            <h4>La consolidation</h4>
+            <p>Concevoir des <strong>quiz de réactivation espacée</strong> et des exercices favorisant l'<strong>ancrage à long terme</strong> et les <strong>transferts d'apprentissage</strong> dans plusieurs contextes différents.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Panel : IA -->
+      <div class="hs-panel" id="tab-ia">
+        <div class="hs-ia-wrapper">
+          <p class="hs-ia-intro">J'utilise l'IA comme <strong>levier de conception</strong> — toujours à la lumière des sciences cognitives, jamais comme substitut à la réflexion pédagogique.</p>
+          <div class="hs-pills hs-pills-large">
+            <span>ChatGPT</span>
+            <span>Claude</span>
+            <span>Claude Code</span>
+            <span>Napkin</span>
+            <span>Gamma</span>
+            <span>ElevenLabs</span>
+            <span>Consensus</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PARCOURS -->
+  <section id="section-parcours" class="extra-section" style="background: var(--white);">
+    <div class="extra-header reveal">
+      <p class="section-label">Parcours</p>
+      <h2 class="section-title">Mon <em>parcours</em></h2>
+      <p class="section-subtitle">Mon chemin — formation, alternance et expériences qui ont façonné mon expertise.</p>
+    </div>
+    <div class="genially-wrapper reveal">
+      <iframe src="https://view.genially.com/693b052af6f64f4c4bb73ac3" 
+        width="100%" height="600" 
+        allowfullscreen 
+        loading="lazy"
+        style="border:none; border-radius: 16px;">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- SOFT SKILLS -->
+  <section id="section-softskills" class="extra-section">
+    <div class="extra-header reveal">
+      <p class="section-label">Soft skills</p>
+      <h2 class="section-title">Mes compétences <em>humaines</em></h2>
+      <p class="section-subtitle">Les qualités transversales qui guident ma façon de travailler et de collaborer.</p>
+    </div>
+    <div class="softskills-grid">
+
+      <div class="softskill-card reveal">
+        <div class="softskill-icon">🤝</div>
+        <h3>Travail en équipe</h3>
+        <ul class="softskill-list">
+          <li><strong>Transparence</strong> — partage clair des choix et contraintes de conception</li>
+          <li><strong>Bienveillance</strong> — accueil des retours avec agilité, feedback respectueux, climat sécurisant</li>
+        </ul>
+      </div>
+
+      <div class="softskill-card reveal">
+        <div class="softskill-icon">🌱</div>
+        <h3>Persévérance</h3>
+        <ul class="softskill-list">
+          <li>Conduite des projets à leur terme, malgré les contraintes et les itérations</li>
+          <li>Acceptation des phases d'essais, d'erreurs et d'ajustements</li>
+          <li>Exploration en profondeur pour trouver le bon outil pour le bon usage</li>
+        </ul>
+      </div>
+
+      <div class="softskill-card reveal">
+        <div class="softskill-icon">💡</div>
+        <h3>Prise d'initiative</h3>
+        <ul class="softskill-list">
+          <li>Proposition de réponses pédagogiques adaptées aux besoins</li>
+          <li>Identification et levée des points de blocage en amont</li>
+          <li>Force de proposition constante</li>
+        </ul>
+      </div>
+
+      <div class="softskill-card reveal">
+        <div class="softskill-icon">🏠</div>
+        <h3>Autonomie & télétravail</h3>
+        <ul class="softskill-list">
+          <li>Gestion indépendante du flux de travail à distance</li>
+          <li>Maintien d'un lien régulier avec les collaborateurs</li>
+          <li>Respect des délais et objectifs sans supervision constante</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARTICLES -->
+  <section id="section-articles" class="extra-section" style="background: var(--white);">
+    <div class="extra-header reveal">
+      <p class="section-label">Articles publiés</p>
+      <h2 class="section-title">Mes <em>articles</em></h2>
+      <p class="section-subtitle">Publiés sur le blog de Didask, où j'ai réalisé mes 2 ans de Master en alternance. Sujets choisis selon mes lectures de recherche, rédigés avec l'aide de Claude paramétré par l'équipe marketing.</p>
+    </div>
+    <div class="articles-grid">
+
+      <a href="https://www.didask.com/post/modeles-dapprentissage-en-formation-du-behaviorisme-au-connectivisme" target="_blank" class="article-card reveal">
+        <div class="article-date">Décembre 2025</div>
+        <h3>Modèles d'apprentissage en formation : du béhaviorisme au connectivisme</h3>
+        <span class="article-link">Lire l'article →</span>
+      </a>
+
+      <a href="https://www.didask.com/post/la-taxonomie-de-bloom-revisee-vers-une-approche-cognitive-plus-moderne-apprentissage" target="_blank" class="article-card reveal">
+        <div class="article-date">Août 2025</div>
+        <h3>La taxonomie de Bloom révisée : vers une approche cognitive plus moderne de l'apprentissage</h3>
+        <span class="article-link">Lire l'article →</span>
+      </a>
+
+      <a href="https://www.didask.com/post/le-sentiment-dauto-efficacite-dans-lapprentissage-un-levier-scientifiquement-valide-pour-optimiser-la-formation" target="_blank" class="article-card reveal">
+        <div class="article-date">Juin 2025</div>
+        <h3>Sentiment d'auto-efficacité : un levier scientifiquement validé pour optimiser la formation</h3>
+        <span class="article-link">Lire l'article →</span>
+      </a>
+
+      <a href="https://www.didask.com/post/conception-universelle-apprentissage" target="_blank" class="article-card reveal">
+        <div class="article-date">Septembre 2025</div>
+        <h3>La conception universelle de l'apprentissage : révolutionner la formation pour tous</h3>
+        <span class="article-link">Lire l'article →</span>
+      </a>
+
+      <a href="https://www.didask.com/post/methode-addie" target="_blank" class="article-card reveal">
+        <div class="article-date">Juillet 2025</div>
+        <h3>La méthode ADDIE : guide complet pour concevoir des formations e-learning efficaces</h3>
+        <span class="article-link">Lire l'article →</span>
+      </a>
+
+      <a href="https://www.didask.com/post/agents-virtuels-pedagogiques-reellement-efficaces-pour-vos-formations" target="_blank" class="article-card reveal">
+        <div class="article-date">Avril 2025</div>
+        <h3>Les agents virtuels pédagogiques sont-ils réellement efficaces pour vos formations ?</h3>
+        <span class="article-link">Lire l'article →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- GESTION DE PROJET -->
+  <section id="section-gestion" class="extra-section">
+    <div class="extra-header reveal">
+      <p class="section-label">Gestion de projet e-learning</p>
+      <h2 class="section-title">Piloter un projet <em>de A à Z</em></h2>
+      <p class="section-subtitle">Concevoir un dispositif pédagogique, c'est aussi savoir le piloter : cadrer, itérer, livrer. Voici les méthodes que j'utilise au quotidien.</p>
+    </div>
+    <div class="gestion-grid">
+
+      <div class="softskill-card reveal">
+        <div class="softskill-icon">🔄</div>
+        <h3>Méthode ADDIE</h3>
+        <ul class="softskill-list">
+          <li><strong>Analyse</strong> — analyse des besoins, du public cible et du contexte</li>
+          <li><strong>Design</strong> — scénarisation pédagogique, storyboard, choix des modalités</li>
+          <li><strong>Développement</strong> — production des contenus (vidéos, modules, serious games…)</li>
+          <li><strong>Implémentation</strong> — déploiement sur LMS, accompagnement des apprenants</li>
+          <li><strong>Évaluation</strong> — mesure de l'efficacité, retours et itérations</li>
+        </ul>
+      </div>
+
+      <div class="softskill-card reveal">
+        <div class="softskill-icon">⚡</div>
+        <h3>Méthode Agile</h3>
+        <ul class="softskill-list">
+          <li>Travail en <strong>sprints</strong> courts avec livraisons régulières</li>
+          <li>Collaboration étroite avec les parties prenantes tout au long du projet</li>
+          <li>Intégration des retours en continu plutôt qu'en fin de projet</li>
+          <li>Adaptation rapide aux changements de besoins ou de contraintes</li>
+        </ul>
+      </div>
+
+      <div class="softskill-card reveal">
+        <div class="softskill-icon">🗂️</div>
+        <h3>Outils de pilotage</h3>
+        <ul class="softskill-list">
+          <li><strong>Notion</strong> — suivi de projet, documentation, wikis</li>
+          <li><strong>Slack</strong> — communication et coordination d'équipe</li>
+          <li>Rédaction de <strong>cahiers des charges</strong> et Game Design Documents</li>
+          <li>Coordination avec clients, experts métier et prestataires</li>
+        </ul>
+      </div>
+
+      <div class="softskill-card reveal">
+        <div class="softskill-icon">🎯</div>
+        <h3>Approche centrée apprenant</h3>
+        <ul class="softskill-list">
+          <li>Conception basée sur les <strong>sciences cognitives</strong> (charge cognitive, espacé, récupération…)</li>
+          <li>Définition d'<strong>objectifs pédagogiques</strong> opérationnels (taxonomie de Bloom)</li>
+          <li>Conception universelle de l'apprentissage (<strong>CUA</strong>) et accessibilité</li>
+          <li>Évaluation formative et sommative intégrées dès la conception</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Travaillons <em>ensemble</em></h2>
+    <p class="section-subtitle">
+      Un projet de formation, une collaboration ou simplement envie d'échanger ? 
+      Je serai ravie de vous lire.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:elise.triquet@hotmail.fr" class="contact-btn contact-btn-light">
+        ✉️ &nbsp;elise.triquet@hotmail.fr
+      </a>
+      <a href="https://www.linkedin.com/in/elisetriquet/" target="_blank" class="contact-btn contact-btn-ghost">
+        💼 &nbsp;LinkedIn
+      </a>
+      <a href="tel:+33632683197" class="contact-btn contact-btn-ghost">
+        📱 &nbsp;06 32 68 31 97
+      </a>
+    </div>
+  </section>
+
+  <!-- CHATBOT -->
+  <div id="chatbot-container">
+    <button id="chatbot-toggle" aria-label="Ouvrir le chatbot">
+      <span id="chatbot-toggle-icon">💬</span>
+    </button>
+    <div id="chatbot-panel">
+      <div id="chatbot-header">
+        <div id="chatbot-avatar">🤖</div>
+        <div>
+          <div id="chatbot-title">Elise IA</div>
+          <div id="chatbot-subtitle">Mon alter ego virtuel — pas vraiment moi !</div>
+        </div>
+        <button id="chatbot-close" aria-label="Fermer">✕</button>
+      </div>
+      <div id="chatbot-messages">
+        <div class="bot-msg">
+          Bonjour ! Je suis <strong>Elise IA</strong>, l'alter ego virtuel d'Elise Triquet 🤖<br><br>
+          Je connais son parcours, ses compétences et ses réalisations sur le bout des doigts. Posez-moi une question !<br><br>
+          <em>Exemples : "Elise maîtrise-t-elle Adobe Premiere ?" · "Quel est son parcours ?" · "Est-elle disponible ?"</em>
+        </div>
+      </div>
+      <div id="chatbot-input-row">
+        <input id="chatbot-input" type="text" placeholder="Posez votre question…" autocomplete="off">
+        <button id="chatbot-send">→</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Elise Triquet — Conçu avec soin ✦</p>
+  </footer>
+
+  <script>
+    // ── TYPING ANIMATION ──
+    const words = [
+      "ingénieure pédagogique",
+      "instructional designer",
+      "digital learning manager"
+    ];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    const el = document.getElementById('typed-text');
+    const typeSpeed = 65;
+    const deleteSpeed = 35;
+    const pauseAfterWord = 1800;
+    const pauseBeforeDelete = 200;
+
+    function type() {
+      const word = words[wordIndex];
+      if (!deleting) {
+        el.textContent = word.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === word.length) {
+          deleting = true;
+          setTimeout(type, pauseAfterWord);
+          return;
+        }
+        setTimeout(type, typeSpeed);
+      } else {
+        el.textContent = word.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          setTimeout(type, pauseBeforeDelete);
+          return;
+        }
+        setTimeout(type, deleteSpeed);
+      }
+    }
+    setTimeout(type, 800);
+
+    // ── HARD SKILLS TABS ──
+    document.querySelectorAll('.hs-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.hs-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.hs-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ── CHATBOT ──
+    const SYSTEM_PROMPT = `Tu es "Elise IA", l'alter ego virtuel d'Elise TRIQUET, ingénieure pédagogique. Tu réponds aux questions des visiteurs de son portfolio en parlant à la 1ère personne ("je"), mais tu précises TOUJOURS dès le début de la conversation que tu es son alter ego IA — pas elle en personne.
+
+Ton ton est chaleureux, professionnel, légèrement décontracté. Tu peux utiliser des emojis avec modération. Tu réponds en français par défaut, mais tu peux switcher en anglais ou espagnol si on te parle dans ces langues (Elise est trilingue).
+
+=== PROFIL D'ELISE TRIQUET ===
+
+IDENTITÉ
+- Nom : Elise TRIQUET
+- Métier : Ingénieure pédagogique / Instructional Designer / Digital Learning Manager
+- Email : elise.triquet@hotmail.fr
+- Téléphone : 06.32.68.31.97
+- LinkedIn : https://www.linkedin.com/in/elisetriquet/
+- Localisation : France
+
+MISSION
+Utiliser des outils numériques performants à la lumière des sciences cognitives pour accompagner l'éducation et la formation du plus grand nombre.
+
+FORMATION
+- Bac+5 : Master Ingénierie Pédagogique, e-formation et environnements numériques — Université Toulouse Jean Jaurès (2024-2026, en alternance). Mémoire de M2 en cours sur l'autorégulation des apprenants dans le cadre de l'utilisation d'un coach IA (soutenance prévue septembre 2026 — "laissez-moi le temps de finaliser et soutenir mon mémoire !" 😄). Mémoire de M1 sur les effets du genre de l'agent virtuel pédagogique sur les comportements d'apprentissage.
+- Bac+3 : Bachelier en traduction et interprétation anglais/espagnol — ISTI de Bruxelles (2011-2014)
+
+EXPÉRIENCES PROFESSIONNELLES
+- Ingénieure pédagogique en alternance chez Didask (sept. 2024 – sept. 2026) : Didask est une entreprise EdTech renommée pour son utilisation des sciences cognitives dans le développement de son IA pédagogique. Missions : conception de dispositifs e-learning, production de capsules vidéo, rédaction d'articles de blog (taxonomie de Bloom, méthode ADDIE, agents virtuels, etc.), conception d'un serious game onboarding, administration Moodle.
+- Formatrice anglais freelance (2019-2024) : formation d'adultes en anglais, conception de cours sur mesure.
+- Cheffe réceptionniste en hôtellerie (2014-2019) : divers établissements en France, Irlande et Pays de Galles, dont des hôtels de luxe. Expérience de la relation client haut de gamme et du management.
+
+COMPÉTENCES TECHNIQUES (HARD SKILLS)
+Conception audiovisuelle :
+- Adobe Premiere, Photoshop, Illustrator, Audition
+- Canva Pro (niveau avancé)
+- Genially + extensions S'CAPE
+
+Outils IA :
+- ChatGPT, Claude, Napkin, Gamma, Consensus, ElevenLabs
+
+Outils auteurs e-learning :
+- Didask, Articulate Storyline, Articulate Rise, Scenari (Opale)
+
+LMS :
+- Moodle (conception et administration)
+
+GESTION DE PROJET
+- Méthode ADDIE (Analyze, Design, Develop, Implement, Evaluate)
+- Méthodes Agile / travail en sprints
+- Rédaction de cahiers des charges et Game Design Documents
+- Notion, Trello / Kanban
+- Coordination avec clients, experts métier et prestataires
+
+SOFT SKILLS
+- Travail en équipe : transparence, bienveillance, feedback constructif
+- Persévérance : conduite des projets à terme malgré les contraintes, acceptation de l'erreur comme levier d'apprentissage
+- Prise d'initiative : force de proposition, identification des points de blocage en amont
+- Autonomie et télétravail : gestion indépendante, respect des délais
+
+LANGUES
+- Français : langue maternelle
+- Anglais : niveau expert (C2, expérience professionnelle en pays anglophones)
+- Espagnol : niveau avancé (B2/C1, diplôme ISTI)
+
+RÉALISATIONS CLÉS
+- Capsules vidéo pédagogiques : IA, sciences cognitives (growth mindset, rôle de l'erreur, méthode DROP), accessibilité, prononciation en anglais
+- Serious game "inscape" pour l'onboarding chez Didask (Genially + S'CAPE + ChatGPT + ElevenLabs + BandLab)
+- Dispositif expérimental sur les agents virtuels (mémoire M1) : 2 capsules avec avatars de genre différent
+- Podcast réalisé en Master 2
+- Espace Moodle conçu et administré de A à Z
+- 6 articles publiés sur le blog Didask (sciences cognitives appliquées à la formation)
+
+DISPONIBILITÉ
+Je suis disponible pour un poste à partir de septembre/octobre 2026, à l'issue de mon alternance et de la soutenance de mon mémoire de M2.
+
+=== INSTRUCTIONS DE COMPORTEMENT ===
+- Réponds de façon concise et claire (3-5 phrases max sauf si on demande du détail)
+- RÈGLE ABSOLUE ANTI-HALLUCINATION : si tu n'as pas l'information dans ta fiche de contexte ci-dessus, tu NE dois JAMAIS inventer, supposer ou extrapoler. Tu dis explicitement "Je n'ai pas cette information" et tu rediriges vers le formulaire de contact.
+- Message de redirection à utiliser quand tu ne sais pas : "Je n'ai pas cette information précise 😊 Pour en savoir plus, vous pouvez contacter Elise directement : <a href='#contact' onclick='document.getElementById(\"chatbot-panel\").classList.remove(\"open\")'>via le formulaire de contact</a> ou à elise.triquet@hotmail.fr"
+- Ne prétends jamais être Elise en personne — rappelle que tu es son alter ego IA si c'est ambigu
+- Ne fais JAMAIS de suppositions sur des informations non présentes dans ta fiche (salaire souhaité, disponibilités précises au-delà de sept. 2026, avis personnels d'Elise sur des sujets non mentionnés, etc.)
+- Pour toute question sur une collaboration, un recrutement ou un projet, invite toujours à contacter Elise directement`;
+
+    const chatHistory = [];
+
+    const toggle = document.getElementById('chatbot-toggle');
+    const panel = document.getElementById('chatbot-panel');
+    const closeBtn = document.getElementById('chatbot-close');
+    const input = document.getElementById('chatbot-input');
+    const sendBtn = document.getElementById('chatbot-send');
+    const messages = document.getElementById('chatbot-messages');
+
+    toggle.addEventListener('click', () => {
+      panel.classList.toggle('open');
+      if (panel.classList.contains('open')) input.focus();
+    });
+
+    closeBtn.addEventListener('click', () => panel.classList.remove('open'));
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+    sendBtn.addEventListener('click', sendMessage);
+
+    function addMsg(text, role) {
+      const div = document.createElement('div');
+      div.className = role === 'user' ? 'user-msg' : 'bot-msg';
+      div.innerHTML = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+      return div;
+    }
+
+    function addTyping() {
+      const div = document.createElement('div');
+      div.className = 'typing-indicator';
+      div.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+      return div;
+    }
+
+    async function sendMessage() {
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      addMsg(text, 'user');
+      chatHistory.push({ role: 'user', content: text });
+
+      const typing = addTyping();
+
+      try {
+        const res = await fetch('/.netlify/functions/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system: SYSTEM_PROMPT,
+            messages: chatHistory
+          })
+        });
+
+        const data = await res.json();
+        const reply = data.text || "Désolée, une erreur s'est produite. N'hésitez pas à contacter Elise directement à elise.triquet@hotmail.fr 😊";
+
+        typing.remove();
+        addMsg(reply.replace(/\n/g, '<br>'), 'bot');
+        chatHistory.push({ role: 'assistant', content: reply });
+
+      } catch (err) {
+        typing.remove();
+        addMsg("Une erreur s'est produite. Contactez Elise directement à <a href='mailto:elise.triquet@hotmail.fr' style='color:var(--violet)'>elise.triquet@hotmail.fr</a> 😊", 'bot');
+      }
+    }
+
+    // ── SCROLL REVEAL ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = (i % 3) * 0.12 + 's';
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
