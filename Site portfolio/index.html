@@ -1100,6 +1100,57 @@
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .about-badge { bottom: -1rem; right: -0.5rem; }
     }
+    /* ── BREADCRUMB & BACK TO TOP ── */
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--violet);
+      text-decoration: none;
+      background: var(--violet-pale);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .breadcrumb:hover {
+      background: var(--violet);
+      color: #fff;
+      transform: translateX(-3px);
+    }
+
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--violet);
+      color: #fff;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.35);
+      transition: opacity 0.3s, transform 0.2s;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(124,58,237,0.45);
+    }
+
   </style>
 </head>
 <body>
@@ -1224,6 +1275,8 @@
   <!-- VIDÉOS -->
   <section id="videos">
     <div class="projects-header">
+      <a href="#projects" class="breadcrumb">← Mes réalisations</a>
+      
       <p class="section-label">Vidéos</p>
       <h2 class="section-title">Mes <em>capsules</em> pédagogiques</h2>
       <p class="section-subtitle">
@@ -1432,6 +1485,8 @@
   <!-- SERIOUS GAME -->
   <section id="section-seriousgame" class="extra-section" style="background: var(--white);">
     <div class="extra-header reveal">
+      <a href="#projects" class="breadcrumb">← Mes réalisations</a>
+      
       <p class="section-label">Serious Game</p>
       <h2 class="section-title">Un <em>inscape game</em> pour l'onboarding</h2>
       <p class="section-subtitle">Ce jeu sérieux a été réalisé pour faciliter l'onboarding dans l'entreprise Didask. Les joueurs doivent résoudre des énigmes et connaître les piliers de la culture d'entreprise pour pouvoir y "rentrer".</p>
@@ -1472,6 +1527,8 @@
   <!-- HARD SKILLS -->
   <section id="section-hardskills" class="extra-section">
     <div class="extra-header reveal">
+      <a href="#projects" class="breadcrumb">← Mes réalisations</a>
+      
       <p class="section-label">Hard skills</p>
       <h2 class="section-title">Mes compétences <em>techniques</em></h2>
       <p class="section-subtitle">Cliquez sur une catégorie pour explorer les outils et concepts associés.</p>
@@ -1601,6 +1658,8 @@
   <!-- PARCOURS -->
   <section id="section-parcours" class="extra-section" style="background: var(--white);">
     <div class="extra-header reveal">
+      <a href="#projects" class="breadcrumb">← Mes réalisations</a>
+      
       <p class="section-label">Parcours</p>
       <h2 class="section-title">Mon <em>parcours</em></h2>
       <p class="section-subtitle">Mon chemin — formation, alternance et expériences qui ont façonné mon expertise.</p>
@@ -1618,6 +1677,8 @@
   <!-- SOFT SKILLS -->
   <section id="section-softskills" class="extra-section">
     <div class="extra-header reveal">
+      <a href="#projects" class="breadcrumb">← Mes réalisations</a>
+      
       <p class="section-label">Soft skills</p>
       <h2 class="section-title">Mes compétences <em>humaines</em></h2>
       <p class="section-subtitle">Les qualités transversales qui guident ma façon de travailler et de collaborer.</p>
@@ -1669,6 +1730,8 @@
   <!-- ARTICLES -->
   <section id="section-articles" class="extra-section" style="background: var(--white);">
     <div class="extra-header reveal">
+      <a href="#projects" class="breadcrumb">← Mes réalisations</a>
+      
       <p class="section-label">Articles publiés</p>
       <h2 class="section-title">Mes <em>articles</em></h2>
       <p class="section-subtitle">Publiés sur le blog de Didask, où j'ai réalisé mes 2 ans de Master en alternance. Sujets choisis selon mes lectures de recherche, rédigés avec l'aide de Claude paramétré par l'équipe marketing.</p>
@@ -1717,6 +1780,8 @@
   <!-- GESTION DE PROJET -->
   <section id="section-gestion" class="extra-section">
     <div class="extra-header reveal">
+      <a href="#projects" class="breadcrumb">← Mes réalisations</a>
+      
       <p class="section-label">Gestion de projet e-learning</p>
       <h2 class="section-title">Piloter un projet <em>de A à Z</em></h2>
       <p class="section-subtitle">Concevoir un dispositif pédagogique, c'est aussi savoir le piloter : cadrer, itérer, livrer. Voici les méthodes que j'utilise au quotidien.</p>
@@ -1793,6 +1858,9 @@
   </section>
 
 
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Retour en haut">↑</button>
+
   <!-- FOOTER -->
   <footer>
     <p>© 2026 Elise Triquet — Conçu avec soin ✦</p>
@@ -1848,6 +1916,13 @@
         document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
       });
     });
+
+    // ── BACK TO TOP ──
+    const backBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     // ── SCROLL REVEAL ──
     const reveals = document.querySelectorAll('.reveal');
